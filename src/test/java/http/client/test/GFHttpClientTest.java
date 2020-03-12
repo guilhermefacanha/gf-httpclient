@@ -31,6 +31,17 @@ public class GFHttpClientTest {
 	}
 	
 	@Test
+	public void testGetFile() throws IOException {
+		GFCall call = GFCall.builder()
+				.method(RequestMethod.GET)
+				.url("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")
+				.build();
+		
+		GFResponse resp = GFHttpClient.call(call);
+		Assert.assertEquals(resp.getCode(), 200);
+	}
+	
+	@Test
 	public void testPost() throws IOException {
 		JsonObject json = new JsonObject();
 		json.addProperty("name", "john");

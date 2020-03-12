@@ -11,12 +11,14 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import http.client.enumeration.RequestMethod;
+import http.client.utils.StringUtils;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * Helper class to connect to rest services <br/>
@@ -71,11 +73,14 @@ public class GFHttpClient {
 		addHeaders(request, call);
 
 		try (Response response = client.newCall(request).execute()) {
+			byte[] body = response.body().bytes();
+			String json = StringUtils.getJson(body);
 			return GFResponse.builder()
 							.code(response.code())
 							.headers(response.headers())
 							.contentType(response.body().contentType())
-							.content(response.body().string())
+							.content(json)
+							.contentByte(body)
 							.build();
 		}
 	}

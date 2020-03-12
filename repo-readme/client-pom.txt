@@ -1,0 +1,13 @@
+<repositories>
+		<repository>
+			<id>gf-github</id>
+			<url>https://raw.githubusercontent.com/guilhermefacanha/gf-httpclient/repository</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>br.com.gfsolucoesti</groupId>
+			<artifactId>gf-httpclient</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+</dependencies>

@@ -5,6 +5,11 @@ import lombok.Data;
 import okhttp3.Headers;
 import okhttp3.MediaType;
 
+/**
+ * Response Class from a Http Call.
+ * <br/>
+ * Will store the response code, headers, content, contentType;
+ * */
 @Builder
 @Data
 public class GFResponse {
