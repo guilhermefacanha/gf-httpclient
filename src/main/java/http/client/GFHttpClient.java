@@ -73,17 +73,10 @@ public class GFHttpClient {
 		addHeaders(request, call);
 
 		try (Response response = client.newCall(request).execute()) {
-			byte[] body = response.body().bytes();
-			String json = StringUtils.getJson(body);
-			return GFResponse.builder()
-							.code(response.code())
-							.headers(response.headers())
-							.contentType(response.body().contentType())
-							.content(json)
-							.contentByte(body)
-							.build();
+			return generateResponse(response);
 		}
 	}
+
 	
 	private static GFResponse post(GFCall call) throws IOException {
 		OkHttpClient client = getHttpClient();
@@ -101,12 +94,20 @@ public class GFHttpClient {
 		addHeaders(request, call);
 		
 		try (Response response = client.newCall(request).execute()) {
-			return GFResponse.builder()
-					.code(response.code())
-					.headers(response.headers())
-					.content(response.body().string())
-					.build();
+			return generateResponse(response);
 		}
+	}
+
+	private static GFResponse generateResponse(Response response) throws IOException {
+		byte[] body = response.body().bytes();
+		String json = StringUtils.getJson(body);
+		return GFResponse.builder()
+				.code(response.code())
+				.headers(response.headers())
+				.contentType(response.body().contentType())
+				.content(json)
+				.contentByte(body)
+				.build();
 	}
 
 	private static HttpUrl.Builder getUrlWithParams(GFCall call) {
