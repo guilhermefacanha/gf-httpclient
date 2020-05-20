@@ -2,8 +2,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.gfsolucoesti</groupId>
 	<artifactId>gf-httpclient</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<packaging>jar</packaging>
+	<description>GF HTTP Cliente based on OkHttp4 lib</description>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
